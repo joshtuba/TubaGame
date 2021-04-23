@@ -1,6 +1,10 @@
 
 import java.awt.Color;
+import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
 import java.util.Random;
+
+//
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +17,8 @@ import java.util.Random;
  * @author raspb
  */
 public class TubaUI extends javax.swing.JFrame {
-
+    
+    
     /**
      * Creates new form TubaUI
      */
@@ -31,7 +36,7 @@ public class TubaUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        noteImageLbl = new javax.swing.JLabel();
+        noteNameLbl = new javax.swing.JLabel();
         startStopGameBtn = new javax.swing.JButton();
         valveBtn1 = new javax.swing.JButton();
         valveBtn2 = new javax.swing.JButton();
@@ -41,13 +46,14 @@ public class TubaUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         scoreLbl = new javax.swing.JLabel();
         answerLbl = new javax.swing.JLabel();
+        noteImageLbl = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        noteImageLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        noteImageLbl.setText("Note will Display Here");
+        noteNameLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        noteNameLbl.setText("Note will Display Here");
 
         startStopGameBtn.setText("Start Game");
         startStopGameBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -102,18 +108,24 @@ public class TubaUI extends javax.swing.JFrame {
 
         answerLbl.setText("Click Start to Begin");
 
+        noteImageLbl.setText("Filler Text");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(106, 106, 106)
+                                .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(valveBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
@@ -123,7 +135,6 @@ public class TubaUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                 .addComponent(playNoteBtn))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
                         .addComponent(jLabel1)
                         .addGap(32, 32, 32)
                         .addComponent(scoreLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,9 +151,14 @@ public class TubaUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(startStopGameBtn)
-                .addGap(99, 99, 99)
-                .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valveBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,12 +198,29 @@ public class TubaUI extends javax.swing.JFrame {
         System.out.println("played correctly: " + correct);
         
         
+        //update score
+        updateScore(correct);
+        
         //get random note and display
         if (correct) {
             newNote();
         }
 
     }//GEN-LAST:event_playNoteBtnActionPerformed
+    
+    private void updateScore(boolean correct) {
+        int oldScore = parseInt(scoreLbl.getText());
+        int newScore;
+        if (correct) {
+            newScore = oldScore + 10;
+        } else {
+            newScore = oldScore - 5;
+        }
+        System.out.println("New Score is: " + newScore);
+        scoreLbl.setText(valueOf(newScore));
+    }
+    
+    
     
     private void newNote() {
         Random rand = new Random();
@@ -198,7 +231,8 @@ public class TubaUI extends javax.swing.JFrame {
         System.out.println(noteIndex);
         System.out.println(tubaNotes.getNameByIndex(noteIndex));
         String newNoteName = tubaNotes.getNameByIndex(noteIndex);
-        noteImageLbl.setText(newNoteName);
+        noteNameLbl.setText(newNoteName);
+       
     }
     
     
@@ -208,7 +242,7 @@ public class TubaUI extends javax.swing.JFrame {
         
         NoteManager tubaNotes = new NoteManager();
         
-        String NoteName = noteImageLbl.getText();
+        String NoteName = noteNameLbl.getText();
         int correctFingering = tubaNotes.getFingeringByName(NoteName);
         
         //get input from buttons
@@ -360,6 +394,7 @@ public class TubaUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel noteImageLbl;
+    private javax.swing.JLabel noteNameLbl;
     private javax.swing.JButton playNoteBtn;
     private javax.swing.JLabel scoreLbl;
     private javax.swing.JButton startStopGameBtn;
