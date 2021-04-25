@@ -47,6 +47,10 @@ public class TubaUI extends javax.swing.JFrame {
         scoreLbl = new javax.swing.JLabel();
         answerLbl = new javax.swing.JLabel();
         noteImageLbl = new javax.swing.JLabel();
+        scoreCorrectLbl = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        scoreAttemptsLbl = new javax.swing.JLabel();
+        changePictureBtn = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -108,7 +112,23 @@ public class TubaUI extends javax.swing.JFrame {
 
         answerLbl.setText("Click Start to Begin");
 
+        noteImageLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/B2.jpg"))); // NOI18N
         noteImageLbl.setText("Filler Text");
+
+        scoreCorrectLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        scoreCorrectLbl.setText("0");
+
+        jLabel3.setText("/");
+
+        scoreAttemptsLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        scoreAttemptsLbl.setText("0");
+
+        changePictureBtn.setText("Change Picture Test");
+        changePictureBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePictureBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,13 +157,26 @@ public class TubaUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(32, 32, 32)
-                        .addComponent(scoreLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107)
-                        .addComponent(answerLbl)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(scoreCorrectLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(scoreLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addComponent(answerLbl))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(scoreAttemptsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(startStopGameBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changePictureBtn)
+                    .addComponent(startStopGameBtn))
                 .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
@@ -151,14 +184,20 @@ public class TubaUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(startStopGameBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(changePictureBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valveBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,7 +209,12 @@ public class TubaUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(scoreLbl)
                     .addComponent(answerLbl))
-                .addGap(71, 71, 71))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(scoreCorrectLbl)
+                    .addComponent(jLabel3)
+                    .addComponent(scoreAttemptsLbl))
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -218,6 +262,18 @@ public class TubaUI extends javax.swing.JFrame {
         }
         System.out.println("New Score is: " + newScore);
         scoreLbl.setText(valueOf(newScore));
+        
+        
+        int oldCorrect = parseInt(scoreCorrectLbl.getText());
+        int oldAttempts = parseInt(scoreAttemptsLbl.getText());
+        
+        int newAttempts = oldAttempts + 1;
+        int newCorrect = oldCorrect;
+        if (correct) {
+            newCorrect += 1;
+        }
+        scoreCorrectLbl.setText(valueOf(newCorrect));
+        scoreAttemptsLbl.setText(valueOf(newAttempts));
     }
     
     
@@ -324,6 +380,13 @@ public class TubaUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_valveBtn4ActionPerformed
 
+    private void changePictureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePictureBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //change picture code
+        
+    }//GEN-LAST:event_changePictureBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,11 +454,15 @@ public class TubaUI extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel answerLbl;
+    private javax.swing.JButton changePictureBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel noteImageLbl;
     private javax.swing.JLabel noteNameLbl;
     private javax.swing.JButton playNoteBtn;
+    private javax.swing.JLabel scoreAttemptsLbl;
+    private javax.swing.JLabel scoreCorrectLbl;
     private javax.swing.JLabel scoreLbl;
     private javax.swing.JButton startStopGameBtn;
     private javax.swing.JButton valveBtn1;
