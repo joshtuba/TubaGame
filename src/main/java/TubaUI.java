@@ -111,18 +111,18 @@ public class TubaUI extends javax.swing.JFrame {
 
         answerLbl.setText("Click Start to Begin");
 
+        noteImageLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         noteImageLbl.setIcon(new javax.swing.JLabel() {
             public javax.swing.Icon getIcon() {
                 try {
                     return new javax.swing.ImageIcon(
-                        new java.net.URL("https://raw.githubusercontent.com/joshtuba/TubaGame/master/src/main/java/Images/B2.jpg")
+                        new java.net.URL("https://raw.githubusercontent.com/joshtuba/TubaGame/master/src/main/java/Images/Staff.jpg")
                     );
                 } catch (java.net.MalformedURLException e) {
                 }
                 return null;
             }
         }.getIcon());
-        noteImageLbl.setText("Image Displays Here");
 
         scoreCorrectLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         scoreCorrectLbl.setText("0");
@@ -223,6 +223,22 @@ public class TubaUI extends javax.swing.JFrame {
             newNote();
             answerLbl.setText("The Game has begun");
             startStopGameBtn.setText("Stop Game");
+            
+            
+            //testing this
+            noteImageLbl.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://raw.githubusercontent.com/joshtuba/TubaGame/master/src/main/java/Images/D2.jpg")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
+            
+            
         } else {
             System.out.println("Game has ended");
             clearNote();
