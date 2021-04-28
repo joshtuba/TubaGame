@@ -11,14 +11,12 @@ import java.util.Random;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author raspb
  */
 public class TubaUI extends javax.swing.JFrame {
-    
-    
+
     /**
      * Creates new form TubaUI
      */
@@ -55,8 +53,9 @@ public class TubaUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        noteNameLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         noteNameLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        noteNameLbl.setText("Note will Display Here");
+        noteNameLbl.setText("Note name ");
 
         startStopGameBtn.setText("Start Game");
         startStopGameBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -186,12 +185,12 @@ public class TubaUI extends javax.swing.JFrame {
                 .addComponent(startStopGameBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valveBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,61 +217,43 @@ public class TubaUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String buttonText;
         buttonText = startStopGameBtn.getText();
-        
+
         if (buttonText.equals("Start Game") || buttonText.equals("Start New Game")) {
             newNote();
             answerLbl.setText("The Game has begun");
             startStopGameBtn.setText("Stop Game");
-            
-            
-            //testing this
-            noteImageLbl.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://raw.githubusercontent.com/joshtuba/TubaGame/master/src/main/java/Images/D2.jpg")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
-            
-            
         } else {
             System.out.println("Game has ended");
             clearNote();
             startStopGameBtn.setText("Start New Game");
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_startStopGameBtnActionPerformed
 
     private void playNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playNoteBtnActionPerformed
         // TODO add your handling code here:
         System.out.println("--------------");
         System.out.println("Play Note Button Pressed");
-        
+
         int noteIndex;
         NoteManager tubaNotes = new NoteManager();
-        
+
         //check to see if played correctly
         boolean correct;
         correct = isPlayedCorrectly();
         System.out.println("played correctly: " + correct);
-        
-        
+
         //update score
         updateScore(correct);
-        
+
         //get random note and display
         if (correct) {
             newNote();
         }
 
     }//GEN-LAST:event_playNoteBtnActionPerformed
-    
+
     private void updateScore(boolean correct) {
         int oldScore = parseInt(scoreLbl.getText());
         int newScore;
@@ -283,11 +264,10 @@ public class TubaUI extends javax.swing.JFrame {
         }
         System.out.println("New Score is: " + newScore);
         scoreLbl.setText(valueOf(newScore));
-        
-        
+
         int oldCorrect = parseInt(scoreCorrectLbl.getText());
         int oldAttempts = parseInt(scoreAttemptsLbl.getText());
-        
+
         int newAttempts = oldAttempts + 1;
         int newCorrect = oldCorrect;
         if (correct) {
@@ -296,69 +276,87 @@ public class TubaUI extends javax.swing.JFrame {
         scoreCorrectLbl.setText(valueOf(newCorrect));
         scoreAttemptsLbl.setText(valueOf(newAttempts));
     }
-    
+
     private void clearNote() {
         noteNameLbl.setText("");
+        newImage("Staff");
     }
-    
+
     private void newNote() {
         Random rand = new Random();
         int noteIndex;
         NoteManager tubaNotes = new NoteManager();
-        
+
         noteIndex = rand.nextInt(tubaNotes.getSize());
         System.out.println(noteIndex);
         System.out.println(tubaNotes.getNameByIndex(noteIndex));
         String newNoteName = tubaNotes.getNameByIndex(noteIndex);
         noteNameLbl.setText(newNoteName);
-       
+        newImage(newNoteName);
     }
-    
-    
+
+    private void newImage(String note) {
+        String myURL;
+        
+        myURL = "https://raw.githubusercontent.com/joshtuba/TubaGame/master/src/main/java/Images/" + note + ".jpg";
+        
+        noteImageLbl.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                            new java.net.URL(myURL)
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
+    }
+
     private boolean isPlayedCorrectly() {
         boolean playedCorrectly;
         int playedFingering = 0;
-        
+
         NoteManager tubaNotes = new NoteManager();
-        
+
         String NoteName = noteNameLbl.getText();
         int correctFingering = tubaNotes.getFingeringByName(NoteName);
-        
+
         //get input from buttons
         if (valveBtn1.getBackground() == Color.red) {
             playedFingering += 1000;
         }
         if (valveBtn2.getBackground() == Color.red) {
-            playedFingering +=  200;
+            playedFingering += 200;
         }
         if (valveBtn3.getBackground() == Color.red) {
-            playedFingering +=   30;
+            playedFingering += 30;
         }
         if (valveBtn4.getBackground() == Color.red) {
-            playedFingering +=    4;
+            playedFingering += 4;
         }
-        
+
         System.out.println("Buttons pressed are " + playedFingering);
-        
+
         //is input == correct
         if (playedFingering == correctFingering) {
             playedCorrectly = true;
-            
+
             //reset valve colors
             valveBtn1.setBackground(Color.green);
             valveBtn2.setBackground(Color.green);
             valveBtn3.setBackground(Color.green);
             valveBtn4.setBackground(Color.green);
-            
+
         } else {
             playedCorrectly = false;
             System.out.println("Correct fingering was " + correctFingering);
             //throw new WrongNoteException("Wrong Note");
         }
-        
-        return playedCorrectly;        
+
+        return playedCorrectly;
     }
-    
+
     private void valveBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valveBtn1ActionPerformed
         // TODO add your handling code here:
         System.out.println("-------");
@@ -368,7 +366,7 @@ public class TubaUI extends javax.swing.JFrame {
         } else {
             valveBtn1.setBackground(Color.green);
         }
-        
+
     }//GEN-LAST:event_valveBtn1ActionPerformed
 
     private void valveBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valveBtn2ActionPerformed
@@ -437,39 +435,19 @@ public class TubaUI extends javax.swing.JFrame {
                 new TubaUI().setVisible(true);
             }
         });
-        
+
         // the rest of the psvm is my code
-        //This doesnt work ------> NoteManager notesToPlay = new NoteManager(createNoteObjs());
+
         NoteManager tubaNotes = new NoteManager();
         //System.out.println(tubaNotes.getbyName("C2"));
-        
-        //GameStats game = new GameStats();
-        //System.out.println(game.toString());
-        
-        //newNote();
+
+
     }
     //my methods begins here
-    /*
-    public NoteManager createNoteObjs() {
-        NoteManager noteDm = new NoteManager();
-        
-        Note C2 = new Note("C2", 0004); //C below the staff
-        noteDm.create(C2);
-        
-        Note D2 = new Note("D2", 1200); //D below the staff
-        noteDm.create(D2);
-        
-        return noteDm;
-    }
-    */
-    
-    
+
+
     // my methods end here
-    
-    
-    
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel answerLbl;
     private javax.swing.JButton jButton1;
@@ -488,4 +466,3 @@ public class TubaUI extends javax.swing.JFrame {
     private javax.swing.JButton valveBtn4;
     // End of variables declaration//GEN-END:variables
 }
-

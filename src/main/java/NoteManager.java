@@ -17,14 +17,18 @@ public class NoteManager {
     public NoteManager() {
         database = new ArrayList<Note>();
 
-        Note C2 = new Note("C2",    4);
+        Note Bb2 = new Note("Bb2",    0);
+        database.add(Bb2);
+        Note C2 = new Note("C2",      4);
         database.add(C2);
-        Note D2 = new Note("D2", 1200);
+        Note D2 = new Note("D2",   1200);
         database.add(D2);
-        Note E2 = new Note("E2",  200);
+        Note E2 = new Note("E2",    200);
         database.add(E2);
-        Note F2 = new Note("F2",    0);
+        Note F2 = new Note("F2",      0);
         database.add(F2);
+        Note G2 = new Note("G2",   1200);
+        database.add(G2);
     }
 
     public NoteManager(ArrayList<Note> database) {
