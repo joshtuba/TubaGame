@@ -23,12 +23,18 @@ public class NoteManager {
         database.add(B1);
         Note C2 = new Note("C2", 4);
         database.add(C2);
+        Note Db2 = new Note("Db2", 230);
+        database.add(Db2);
         Note D2 = new Note("D2", 1200);
         database.add(D2);
+        Note Eb2 = new Note("Eb2", 1000);
+        database.add(Eb2);
         Note E2 = new Note("E2", 200);
         database.add(E2);
         Note F2 = new Note("F2", 0);
         database.add(F2);
+        Note Gb2 = new Note("Gb2", 230);
+        database.add(Gb2);
         Note G2 = new Note("G2", 1200);
         database.add(G2);
         Note Ab2 = new Note("Ab2", 1000);
@@ -37,6 +43,16 @@ public class NoteManager {
         database.add(A2);
         Note Bb2 = new Note("Bb2", 0);
         database.add(Bb2);
+        Note B2 = new Note("B2", 1200);
+        database.add(B2);
+        Note C3 = new Note("C3", 1000);
+        database.add(C3);
+        Note Db3 = new Note("Db3", 200);
+        database.add(Db3);
+        Note D3 = new Note("D3", 0);
+        database.add(D3);
+        
+        
     }
 
     public NoteManager(ArrayList<Note> database) {
