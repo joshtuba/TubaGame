@@ -517,8 +517,7 @@ public class TubaUI extends javax.swing.JFrame {
         });
 
         // the rest of the psvm is my code
-        NoteManager tubaNotes = new NoteManager();
-        //System.out.println(tubaNotes.getbyName("C2"));
+
     }
     //my methods begins here
 
@@ -542,4 +541,13 @@ public class TubaUI extends javax.swing.JFrame {
     private javax.swing.JButton valveBtn3;
     private javax.swing.JButton valveBtn4;
     // End of variables declaration//GEN-END:variables
+
+/*
+    
+    Josh's Final Project for Intermediate Programming
+    
+    */
+
+
+
 }
