@@ -249,7 +249,7 @@ public class TubaUI extends javax.swing.JFrame {
             startStopGameBtn.setText("Stop Game");
             scoreCorrectLbl.setText("0");
             scoreAttemptsLbl.setText("0");
-            QuestionAttemptsLbl.setText("0");
+            QuestionAttemptsLbl.setText("1");
         } else {
             endGame();
         }
@@ -305,14 +305,22 @@ public class TubaUI extends javax.swing.JFrame {
 
         try {
             correct = isPlayedCorrectly();
-            newNote();
+
         } catch (WrongNoteException ex) {
-            JOptionPane.showMessageDialog(this, "Try Again");
+            JOptionPane.showMessageDialog(this, "Sorry, that was incorrect");
         } finally {
             updateScore(correct);
+            newNote();
             isGameFinished();
             System.out.println("played correctly: " + correct);
-        }        
+
+        }
+
+        //reset valve colors
+        valveBtn1.setBackground(Color.green);
+        valveBtn2.setBackground(Color.green);
+        valveBtn3.setBackground(Color.green);
+        valveBtn4.setBackground(Color.green);
     }//GEN-LAST:event_playNoteBtnActionPerformed
 
     private void isGameFinished() {
@@ -321,7 +329,7 @@ public class TubaUI extends javax.swing.JFrame {
             QuestionAttemptsLbl.setText(NumberOfQuestionsToAsk + "");
             System.out.println("This is where I'm at");
             endGame();
-            
+
         }
     }
 
@@ -345,7 +353,7 @@ public class TubaUI extends javax.swing.JFrame {
         }
         scoreCorrectLbl.setText(valueOf(newCorrect));
         scoreAttemptsLbl.setText(valueOf(newAttempts));
-        
+
         updateQuestionsAsked();
     }
 
@@ -365,16 +373,15 @@ public class TubaUI extends javax.swing.JFrame {
         String newNoteName = tubaNotes.getNameByIndex(noteIndex);
         noteNameLbl.setText(newNoteName);
         newImage(newNoteName);
-        
-        
+
     }
-    
+
     private void updateQuestionsAsked() {
         int oldNum = parseInt(QuestionAttemptsLbl.getText());
         int newNum = oldNum + 1;
         QuestionAttemptsLbl.setText(newNum + "");
     }
-    
+
     private void newImage(String note) {
         String myURL;
 
@@ -421,12 +428,6 @@ public class TubaUI extends javax.swing.JFrame {
         //is input == correct
         if (playedFingering == correctFingering) {
             playedCorrectly = true;
-
-            //reset valve colors
-            valveBtn1.setBackground(Color.green);
-            valveBtn2.setBackground(Color.green);
-            valveBtn3.setBackground(Color.green);
-            valveBtn4.setBackground(Color.green);
 
         } else {
             playedCorrectly = false;
@@ -517,7 +518,6 @@ public class TubaUI extends javax.swing.JFrame {
         });
 
         // the rest of the psvm is my code
-
     }
     //my methods begins here
 
@@ -542,12 +542,9 @@ public class TubaUI extends javax.swing.JFrame {
     private javax.swing.JButton valveBtn4;
     // End of variables declaration//GEN-END:variables
 
-/*
+    /*
     
     Josh's Final Project for Intermediate Programming
     
-    */
-
-
-
+     */
 }
