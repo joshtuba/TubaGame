@@ -3,6 +3,7 @@ import java.awt.Color;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 //
 
@@ -16,6 +17,9 @@ import java.util.Random;
  * @author raspb
  */
 public class TubaUI extends javax.swing.JFrame {
+
+    String StartButtonText = "Start Game";
+    int NumberOfQuestionsToAsk = 20;
 
     /**
      * Creates new form TubaUI
@@ -42,12 +46,13 @@ public class TubaUI extends javax.swing.JFrame {
         valveBtn4 = new javax.swing.JButton();
         playNoteBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        scoreLbl = new javax.swing.JLabel();
-        answerLbl = new javax.swing.JLabel();
         noteImageLbl = new javax.swing.JLabel();
         scoreCorrectLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         scoreAttemptsLbl = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        QuestionAttemptsLbl = new javax.swing.JLabel();
+        QuestionsAskLbl = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -55,9 +60,9 @@ public class TubaUI extends javax.swing.JFrame {
 
         noteNameLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         noteNameLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        noteNameLbl.setText("Note name ");
+        noteNameLbl.setText("Click \"Start Game\" to begin");
 
-        startStopGameBtn.setText("Start Game");
+        startStopGameBtn.setText(StartButtonText);
         startStopGameBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startStopGameBtnActionPerformed(evt);
@@ -103,12 +108,8 @@ public class TubaUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Score:");
-
-        scoreLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        scoreLbl.setText("0");
-
-        answerLbl.setText("Click Start to Begin");
 
         noteImageLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         noteImageLbl.setIcon(new javax.swing.JLabel() {
@@ -123,91 +124,115 @@ public class TubaUI extends javax.swing.JFrame {
             }
         }.getIcon());
 
+        scoreCorrectLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         scoreCorrectLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         scoreCorrectLbl.setText("0");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("/");
 
+        scoreAttemptsLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         scoreAttemptsLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         scoreAttemptsLbl.setText("0");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Question:");
+
+        QuestionAttemptsLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        QuestionAttemptsLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        QuestionAttemptsLbl.setText("0");
+
+        QuestionsAskLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        QuestionsAskLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        QuestionsAskLbl.setText("of  " + NumberOfQuestionsToAsk);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 229, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(QuestionAttemptsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(33, 33, 33)
+                                .addComponent(scoreCorrectLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(scoreAttemptsLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(QuestionsAskLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(startStopGameBtn)
+                                .addGap(47, 47, 47))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
                                 .addComponent(valveBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(valveBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(valveBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addComponent(playNoteBtn))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(scoreCorrectLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(scoreLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(107, 107, 107)
-                                .addComponent(answerLbl))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(scoreAttemptsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(16, 16, 16))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(startStopGameBtn)
-                .addGap(85, 85, 85))
+                                .addComponent(valveBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addComponent(playNoteBtn)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(startStopGameBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
+                        .addContainerGap(48, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(scoreCorrectLbl)
+                            .addComponent(jLabel3)
+                            .addComponent(scoreAttemptsLbl))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(QuestionAttemptsLbl)
+                            .addComponent(QuestionsAskLbl))
+                        .addGap(12, 12, 12)
+                        .addComponent(noteNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(startStopGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(noteImageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valveBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valveBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valveBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(playNoteBtn))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(scoreLbl)
-                    .addComponent(answerLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scoreCorrectLbl)
-                    .addComponent(jLabel3)
-                    .addComponent(scoreAttemptsLbl))
-                .addGap(43, 43, 43))
+                    .addComponent(valveBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(playNoteBtn)
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -218,53 +243,98 @@ public class TubaUI extends javax.swing.JFrame {
         String buttonText;
         buttonText = startStopGameBtn.getText();
 
-        if (buttonText.equals("Start Game") || buttonText.equals("Start New Game")) {
+        if (buttonText.equals(StartButtonText)) {
+            System.out.println("This line was printed out");
             newNote();
-            answerLbl.setText("The Game has begun");
             startStopGameBtn.setText("Stop Game");
+            scoreCorrectLbl.setText("0");
+            scoreAttemptsLbl.setText("0");
+            QuestionAttemptsLbl.setText("0");
         } else {
-            System.out.println("Game has ended");
-            clearNote();
-            startStopGameBtn.setText("Start New Game");
+            endGame();
         }
 
 
     }//GEN-LAST:event_startStopGameBtnActionPerformed
 
+    private String getScoreString() {
+        String outputString = "null";
+        int finalPercentage = getFinalScore();
+        String fractionScore = scoreCorrectLbl.getText() + "/" + scoreAttemptsLbl.getText();
+        String line1 = "Score: " + fractionScore;
+        String line2 = "Your final score was: " + finalPercentage + "%";
+
+        outputString = line1 + "\r\n" + line2;
+
+        return outputString;
+    }
+
+    private int getFinalScore() {
+        double Correct = parseInt(scoreCorrectLbl.getText());
+        double Attpepts = parseInt(scoreAttemptsLbl.getText());
+
+        double fraction = Correct / Attpepts;
+        fraction *= 100;
+        fraction = Math.round(fraction);
+        int percentage = (int) fraction;
+        return percentage;
+    }
+
+    private void isGameRunning() throws GameNotRunningException {
+        String buttonText = startStopGameBtn.getText();
+        if (buttonText.equals(StartButtonText)) {
+            throw new GameNotRunningException("Game not Running");
+        }
+    }
+
     private void playNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playNoteBtnActionPerformed
         // TODO add your handling code here:
+
+        try {
+            isGameRunning();
+        } catch (GameNotRunningException ex) {
+            JOptionPane.showMessageDialog(this, "Game is not currently running. \r\n Press the \"" + StartButtonText + "\" button to begin");
+            return;
+        }
+
         System.out.println("--------------");
         System.out.println("Play Note Button Pressed");
 
-        int noteIndex;
-        NoteManager tubaNotes = new NoteManager();
-
         //check to see if played correctly
-        boolean correct;
-        correct = isPlayedCorrectly();
-        System.out.println("played correctly: " + correct);
+        boolean correct = false;
 
-        //update score
-        updateScore(correct);
-
-        //get random note and display
-        if (correct) {
+        try {
+            correct = isPlayedCorrectly();
             newNote();
-        }
-
+        } catch (WrongNoteException ex) {
+            JOptionPane.showMessageDialog(this, "Try Again");
+        } finally {
+            updateScore(correct);
+            isGameFinished();
+            System.out.println("played correctly: " + correct);
+        }        
     }//GEN-LAST:event_playNoteBtnActionPerformed
 
-    private void updateScore(boolean correct) {
-        int oldScore = parseInt(scoreLbl.getText());
-        int newScore;
-        if (correct) {
-            newScore = oldScore + 10;
-        } else {
-            newScore = oldScore - 5;
+    private void isGameFinished() {
+        int attpempts = parseInt(scoreAttemptsLbl.getText());
+        if (attpempts >= NumberOfQuestionsToAsk) {
+            QuestionAttemptsLbl.setText(NumberOfQuestionsToAsk + "");
+            System.out.println("This is where I'm at");
+            endGame();
+            
         }
-        System.out.println("New Score is: " + newScore);
-        scoreLbl.setText(valueOf(newScore));
+    }
 
+    private void endGame() {
+        System.out.println("Game has ended");
+        clearNote();
+        startStopGameBtn.setText(StartButtonText);
+
+        String ScoreString = getScoreString();
+        JOptionPane.showMessageDialog(this, ScoreString);
+    }
+
+    private void updateScore(boolean correct) {
         int oldCorrect = parseInt(scoreCorrectLbl.getText());
         int oldAttempts = parseInt(scoreAttemptsLbl.getText());
 
@@ -275,6 +345,8 @@ public class TubaUI extends javax.swing.JFrame {
         }
         scoreCorrectLbl.setText(valueOf(newCorrect));
         scoreAttemptsLbl.setText(valueOf(newAttempts));
+        
+        updateQuestionsAsked();
     }
 
     private void clearNote() {
@@ -293,13 +365,21 @@ public class TubaUI extends javax.swing.JFrame {
         String newNoteName = tubaNotes.getNameByIndex(noteIndex);
         noteNameLbl.setText(newNoteName);
         newImage(newNoteName);
+        
+        
     }
-
+    
+    private void updateQuestionsAsked() {
+        int oldNum = parseInt(QuestionAttemptsLbl.getText());
+        int newNum = oldNum + 1;
+        QuestionAttemptsLbl.setText(newNum + "");
+    }
+    
     private void newImage(String note) {
         String myURL;
-        
+
         myURL = "https://raw.githubusercontent.com/joshtuba/TubaGame/master/src/main/java/Images/" + note + ".jpg";
-        
+
         noteImageLbl.setIcon(new javax.swing.JLabel() {
             public javax.swing.Icon getIcon() {
                 try {
@@ -313,7 +393,7 @@ public class TubaUI extends javax.swing.JFrame {
         }.getIcon());
     }
 
-    private boolean isPlayedCorrectly() {
+    private boolean isPlayedCorrectly() throws WrongNoteException {
         boolean playedCorrectly;
         int playedFingering = 0;
 
@@ -351,7 +431,7 @@ public class TubaUI extends javax.swing.JFrame {
         } else {
             playedCorrectly = false;
             System.out.println("Correct fingering was " + correctFingering);
-            //throw new WrongNoteException("Wrong Note");
+            throw new WrongNoteException("Wrong Note");
         }
 
         return playedCorrectly;
@@ -437,28 +517,25 @@ public class TubaUI extends javax.swing.JFrame {
         });
 
         // the rest of the psvm is my code
-
         NoteManager tubaNotes = new NoteManager();
         //System.out.println(tubaNotes.getbyName("C2"));
-
-
     }
     //my methods begins here
-
 
     // my methods end here
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel answerLbl;
+    private javax.swing.JLabel QuestionAttemptsLbl;
+    private javax.swing.JLabel QuestionsAskLbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel noteImageLbl;
     private javax.swing.JLabel noteNameLbl;
     private javax.swing.JButton playNoteBtn;
     private javax.swing.JLabel scoreAttemptsLbl;
     private javax.swing.JLabel scoreCorrectLbl;
-    private javax.swing.JLabel scoreLbl;
     private javax.swing.JButton startStopGameBtn;
     private javax.swing.JButton valveBtn1;
     private javax.swing.JButton valveBtn2;

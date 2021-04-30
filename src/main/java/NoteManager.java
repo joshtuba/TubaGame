@@ -17,18 +17,26 @@ public class NoteManager {
     public NoteManager() {
         database = new ArrayList<Note>();
 
-        Note Bb2 = new Note("Bb2",    0);
-        database.add(Bb2);
-        Note C2 = new Note("C2",      4);
+        Note Bb1 = new Note("Bb1",  0);
+        database.add(Bb1);
+        Note B1 = new Note("B1", 204);
+        database.add(B1);
+        Note C2 = new Note("C2", 4);
         database.add(C2);
-        Note D2 = new Note("D2",   1200);
+        Note D2 = new Note("D2", 1200);
         database.add(D2);
-        Note E2 = new Note("E2",    200);
+        Note E2 = new Note("E2", 200);
         database.add(E2);
-        Note F2 = new Note("F2",      0);
+        Note F2 = new Note("F2", 0);
         database.add(F2);
-        Note G2 = new Note("G2",   1200);
+        Note G2 = new Note("G2", 1200);
         database.add(G2);
+        Note Ab2 = new Note("Ab2", 1000);
+        database.add(Ab2);
+        Note A2 = new Note("A2", 200);
+        database.add(A2);
+        Note Bb2 = new Note("Bb2", 0);
+        database.add(Bb2);
     }
 
     public NoteManager(ArrayList<Note> database) {
@@ -68,14 +76,13 @@ public class NoteManager {
 
     public int getFingeringByName(String name) {
         int fingering = 1;
-        
+
         for (Note note : database) {
             if (note.getName() == name) {
                 fingering = note.getFingering();
             }
         }
-    
-        
+
         return fingering;
     }
 
